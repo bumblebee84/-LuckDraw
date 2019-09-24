@@ -1,0 +1,29 @@
+.div{
+    width: 200px;
+    margin: 0 auto;
+    line-height: 30px;
+}
+div{
+    width: 100%;
+    text-align: center;
+}
+.bg{
+    width: 650px;
+    height: 600px;
+    margin: 0 auto;
+    background: url("../img/bg.jpg");
+    position: relative;
+}
+
+.plant{
+    left: 115px;
+    top: 60px;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: all 2s;
+}
+.btn{
+    left: 255px;
+    top: 160px;
+    position: absolute;
+}

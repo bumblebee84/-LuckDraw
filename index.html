@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+<div class="div">
+    <select class="select" id="AreaId" name="AreaId" size="1">
+        <option value="0">-请选择奖品-</option>
+        <option value="1">免单10元</option>
+        <option value="2">免单5元</option>
+        <option value="3">免分期服务费</option>
+        <option value="4">提高白条额度</option>
+        <option value="5">未中奖</option>
+        <option value="6">免单4999元</option>
+        <option value="7">免单50元</option>
+    </select>
+</div>
+
+<div class="bg">
+    <img alt="" class="plant" src="img/plant.png">
+    <img alt="" class="btn" src="img/btn.png">
+</div>
+
+</body>
+<script>
+
+
+    let prize = {
+        'bonus1': {'name': '免单10元', 'angle': 135},
+        'bonus2': {'name': '免单5元', 'angle': 180},
+        'bonus3': {'name': '免分期服务费', 'angle': 235},
+        'bonus4': {'name': '提高白条额度', 'angle': 285},
+        'bonus5': {'name': '未中奖', 'angle': 335},
+        'bonus6': {'name': '免单4999元', 'angle': 30},
+        'bonus7': {'name': '免单50元', 'angle': 85},
+    };
+
+
+    window.onload = function () {
+        let btn = document.getElementsByClassName('btn')[0];
+        let plant = document.getElementsByClassName('plant')[0];
+        let num = 0;   //记录最后的位置
+        let offOn = true;
+        let obj = document.getElementsByClassName('select')[0];
+        let timer = null;
+        btn.onclick = function () {
+            if (offOn) {
+                run();
+            }
+        };
+
+        function run() {
+            clearTimeout(timer);
+            offOn = !offOn;
+
+            for (let i = 0; i < 8; i++) {
+                if (obj[i].selected == true) {
+                    let val = obj[i].value;
+                    if (val == 0) {
+                        let ran = Math.ceil(Math.random() * 7);
+                        plant.style.transform = 'rotate(' + (prize['bonus' + ran].angle + num + 720) + 'deg)';
+                        num += 720;
+                        timer = setTimeout(function () {
+                            alert(prize['bonus' + ran].name);
+                            offOn = !offOn;
+                        }, 2000);
+                    } else {
+                        plant.style.transform = 'rotate(' + (prize['bonus' + val].angle + num + 720) + 'deg)';
+                        num += 720;
+                        timer = setTimeout(function () {
+                            alert(prize['bonus' + val].name);
+                            offOn = !offOn;
+                        }, 2000);
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>
+
